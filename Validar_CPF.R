@@ -1,11 +1,11 @@
 #
 # Acerto do CPF -----
-# OBJ: Paronizar para 
+# OBJ: Paronizar para texto sem caracteres especiais
 #
 variavelCPF <- c("39.110.685-65","039.110.685-65","39606440","   222210  ", "     01", "000-000.000-20")
 
 acertoCPF <- function(variavelCPF)
-{# 1. Remover espaçamento no inicio e final do Texto
+{# 1. Remover espaÃ§amento no inicio e final do Texto
   library(dplyr); library(stringr)
   variavelCPF <- variavelCPF %>% str_trim(.) %>%
     str_remove_all(.,"\\.|-" )  %>% sprintf("%11s", .) %>% str_replace_all(.," ","0")  
@@ -14,8 +14,8 @@ acertoCPF <- function(variavelCPF)
 
 acertoCPF(Va)
 #
-# Função Validar o CPF ------
-# Objetivo: Criar uma coluna na base dizendo se o cpf é valido, ou não.
+# FunÃ§Ã£o Validar o CPF ------
+# Objetivo: Criar uma coluna na base dizendo se o cpf Ã© valido, ou nÃ£o.
 # 
 #
 CriarValidacaoCPF <- function(Variavelcpf){
