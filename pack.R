@@ -1,5 +1,5 @@
 #
-### 01. Instala??o do pacotes
+### 01. Instalação do pacotes
 #
 list_pkt <- c("DBI","sqldf","stringr", "dplyr","ggplot2", "readxl","RODBC","e1071","forecast",
               "tau","devtools","stringi","lubridate","zoo","plotly","DT","XML","rlang","mafs",
@@ -21,7 +21,7 @@ for( i in 1:length(list_pkt)){
 `%notin%` <- Negate(`%in%`)
 
 # 
-### 03. Remover variavel de instala??o
+### 03. Remover variavel de instalação
 # 
 rm(i,list_pkt, list_pkt_install)
 ls()
