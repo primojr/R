@@ -1,4 +1,4 @@
-##################### Analise de Série Temporal - GOOGLE #############################
+##################### Analise de SÃ©rie Temporal - GOOGLE #############################
 ### Banco de dados
  dados=read.table("table_mensal.csv",head=T)
  google = ts(dados,start=c(2004,8),frequency=12)
@@ -13,20 +13,20 @@
 # Decompondo a serie
  plot(decompose(google),xlab="Ano",sub="(a)")
 
-# Testes para tendência e sazonalidade
- cox.stuart.test(google)   # Ultilizou implementac~ao fornecida em sala
+# Testes para tendÃªncia e sazonalidade
+ cox.stuart.test(google)   # Ultilizou implementaÃ§Ã£o de Gilenio
  grupo=c(rep(seq(1,12),7),c(1,2))
  kruskal.test(google,grupo)   # Teste de Sazonalidade
 
-# Primeira Diferenciação
+# Primeira DiferenciaÃ§Ã£o
  cox.stuart.test(diff(google,difference=1))
  grupo=c(rep(seq(1,12),7),1)
- kruskal.test(diff(google,difference=1),grupo)  # Teste de Sazonalidade 1o diferenciação
+ kruskal.test(diff(google,difference=1),grupo)  # Teste de Sazonalidade 1o diferenciaÃ§Ã£o
 
 # Correlograma
  par(mfrow=c(1,2))
- acf(google,main="Série Real",sub="(b)")
- acf(diff(google,difference=1),main="1ª Diferenciação",sub="(c)")
+ acf(google,main="SÃ©rie Real",sub="(b)")
+ acf(diff(google,difference=1),main="1Âª DiferenciaÃ§Ã£o",sub="(c)")
 
 #### Retirando os ultimos 12 meses
  base=google[-c(75:86)]
@@ -36,34 +36,34 @@
 
 # Descritiva
  plot(google2, type="l",xlab="Ano",ylab="Fechamento (U$)",
-      main="Serie Temporal do fechamento das ações da Google(2004-2010).")
+      main="Serie Temporal do fechamento das aÃ§Ãµes da Google(2004-2010).")
  summary(google2);sd(google2)
  CV=(sd(google2)/mean(google2))*100;CV;sd(google2)
 
 # Decompondo a serie
  plot(decompose(google2),xlab="Ano",ylab=c("obe","sas","sss","sss"))
 
-# Testes para tendência e sazonalidade
- cox.stuart.test(google2)   # Ultilizou implementação fornecida em sala
+# Testes para tendÃªncia e sazonalidade
+ cox.stuart.test(google2)   # Ultilizou implementaÃ§Ã£o fornecida em sala
  grupo=c(rep(seq(1,12),6),c(1,2))
  kruskal.test(google2,grupo) # Teste de Sazonalidade
  #13
 
-# Primeira Diferenciação
+# Primeira DiferenciaÃ§Ã£o
  cox.stuart.test(diff(google2,difference=1))
  grupo=c(rep(seq(1,12),6),1)
- kruskal.test(diff(google2,difference=1),grupo)  # Teste de Sazonalidade 1ª diferenciação
+ kruskal.test(diff(google2,difference=1),grupo)  # Teste de Sazonalidade 1Âª diferenciaÃ§Ã£o
  plot(diff(google2,difference=1))
 
 ########################### Ajuste por HW ##################################
  ajuste1=HoltWinters(google2) #previs~ao considerando sazonalidade aditiva
  VF1=predict(ajuste1,12)
- ajuste2=HoltWinters(google2, seasonal="multiplicative") # previsão considerando
+ ajuste2=HoltWinters(google2, seasonal="multiplicative") # previsÃ£o considerando
 
 # sazonalidade multiplicativa
  VF2=predict(ajuste2,12)
 
-# Gráfico do ajuste pelo HW - comparar os ajustamentos
+# GrÃ¡fico do ajuste pelo HW - comparar os ajustamentos
  par(mfrow=c(1,2))
  plot(ajuste1,VF1,xlab="Ano",ylab="Fechamento (U$)",
       main="",sub="(a)");lines(google,type="l",lwd=1,col="black")
@@ -84,11 +84,11 @@ plot(ajuste2,VF2,xlab="Ano",ylab="Fechamento (U$)",
 ### Ajuste do modelo ARIMA(p,d,q)x(P,D,Q)
  arima.bic=arima
  fix(arima)
- y=google2 # Série utilizada
- lag.entrada=c(1,2) # Variavéis de Entrada
+ y=google2 # SÃ©rie utilizada
+ lag.entrada=c(1,2) # VariavÃ©is de Entrada
  prev=12
- l=max(lag.entrada) # Numero máximo de defasagens
- n=length(y) # Numero de observações
+ l=max(lag.entrada) # Numero mÃ¡ximo de defasagens
+ n=length(y) # Numero de observaÃ§Ãµes
 
 #### Contruindo a matriz de entrada Y
 # Constroi a matriz de entrada para os lags especificos antes
@@ -134,9 +134,9 @@ plot(ajuste2,VF2,xlab="Ano",ylab="Fechamento (U$)",
  p.selec=which(M==min(M),arr.ind=TRUE)[1];p.selec
  q.selec=which(M==min(M),arr.ind=TRUE)[2];q.selec
 # Modelos Selecionados
-# a obtenção do modelos se deu da seguinte forma:
+# a obtenÃ§Ã£o do modelos se deu da seguinte forma:
 # atribuiu valores 0,1 para os parametros d,P,Q,D
-# e vez todas as possiveis compinações para os
+# e vez todas as possiveis compinaÃ§Ãµes para os
 # os valores de p,q variando entre 1 e 3.
 # e seleciondos os modelos com menor BIC
  mod1=arima(google2,order=c(2,0,1),seasonal=list(order=c(1,1,0)))
@@ -150,7 +150,7 @@ plot(ajuste2,VF2,xlab="Ano",ylab="Fechamento (U$)",
  y.prev1=predict(mod2,se.fit=FALSE,n.ahead=prev)
  y.prev2=predict(mod4,se.fit=FALSE,n.ahead=prev)
 
-###Gráfico da série e das previsões
+###GrÃ¡fico da sÃ©rie e das previsÃµes
  par(mfrow=c(1,2))
  # SARIMA 2
  a1=mod2[["residuals"]]+google2
@@ -170,7 +170,7 @@ plot(ajuste2,VF2,xlab="Ano",ylab="Fechamento (U$)",
   leg.txt=c("Valor real ", "SARIMA4 "); cores=c("black","red")
   legend(list(x=2004,y=500), legend = leg.txt, col =cores, lwd=2, merge=FALSE)
 
-# Previsão - 12 passos
+# PrevisÃ£o - 12 passos
   plot(y.test1,xlab="Ano",lwd=1,ylab="Fechamento (U$)",ylim=c(250,500))
       lines(VF1,lwd=1, col="blue")
       lines(VF2,lwd=1,col="purple")
@@ -183,7 +183,7 @@ plot(ajuste2,VF2,xlab="Ano",ylab="Fechamento (U$)",
       cores=c("black", "blue", "purple","red","orange")
       legend(list(x=2011,y=320), legend = leg.txt, col=cores, lwd=1, merge=TRUE)
 
-## Diagnóstico
+## DiagnÃ³stico
  tsdiag(mod2)
  tsdiag(mod4)
 
