@@ -74,7 +74,7 @@ ml = ml %>%
 
 
 # ml %>% tabyl(Categoria_Nivel_5, Categoria_Nivel_3) %>% 
-#    write.csv2(.,"C:/Users/prm9ca/Documents/_R/Data.frame/catXseg.csv", row.names = FALSE, fileEncoding ="UTF-8")  
+#    write.csv2(.,"~Documents/_R/Data.frame/catXseg.csv", row.names = FALSE, fileEncoding ="UTF-8")  
 
 
 ##
