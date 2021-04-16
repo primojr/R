@@ -1,8 +1,8 @@
 # Diretorios&Pacotes
 rm(list = ls())
-source("C:/Users/prm9ca/Documents/_R/Script/Apoio/pack.R")
+source("~/Documents/_R/Script/Apoio/pack.R")
 #source("U:/_GERSON/01_DBM/Script R/")
-setwd("S:/PT/mkt/GDU_LA/33. DBM/03_Dashboard/02_SiteBosch/Base/Input/Iris")
+setwd("~/03_Dashboard/02_SiteBosch/Base/Input/Iris")
 
 library(forcats)
 ## lER A BASE
@@ -53,7 +53,7 @@ df = df %>% group_by(year, month, campanha, pais, categoria, segmentacao, keywor
 
 
 df = as_tibble(df)
-write.csv2(df, "S:/PT/mkt/GDU_LA/33. DBM/03_Dashboard/02_SiteBosch/Base/Output/base_keyWord.csv",
+write.csv2(df, "~03_Dashboard/02_SiteBosch/Base/Output/base_keyWord.csv",
            row.names=FALSE, na = '0')
 
 ## DESCRICAO POR PAIS
