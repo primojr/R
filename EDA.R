@@ -13,17 +13,10 @@ data = read.csv(url)
 utils::View(data)
 
 # EDA 
-
 data %>% glimpse()
-
 data %>% plot_intro()
-
 data %>% plot_missing()
-
 data %>% plot_density()
-
 data %>% plot_histogram()
-
 data %>% plot_correlation()
-
 data %>% plot_prcomp()
